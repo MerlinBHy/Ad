@@ -14,7 +14,9 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import crawler.AmazonCrawler;
+/**
+ * Created by hybian on 2017/2/13.
+ */
 
 public class CrawlerMain {
     public static void main(String[] args) throws IOException {
@@ -28,7 +30,8 @@ public class CrawlerMain {
         String adsDataFilePath = args[1];
         String proxyFilePath = args[2];
         String logFilePath = args[3];
-        AmazonCrawler crawler = new AmazonCrawler(proxyFilePath, logFilePath);
+        String urlFilePath = args[4];
+        AmazonCrawler crawler = new AmazonCrawler(proxyFilePath, logFilePath, urlFilePath);
         File file = new File(adsDataFilePath);
         // if file doesnt exists, then create it
         if (!file.exists()) {

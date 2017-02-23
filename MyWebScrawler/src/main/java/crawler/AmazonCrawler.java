@@ -11,7 +11,10 @@ import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by hybian on 2017/2/13.
@@ -24,17 +27,19 @@ public class AmazonCrawler {
     private List<String> proxyList;
     private List<String> titleList;
     private List<String> categoryList;
+    private HashSet<String> crawledUrls;
     BufferedWriter logBFWriter;
-
+    private String url_file;
     private int index = 0;
 
-    public AmazonCrawler(String proxy_file, String log_file) {
+    public AmazonCrawler(String proxy_file, String log_file, String url_file) {
         initProxyList(proxy_file);
 
         initHtmlSelector();
 
         initLog(log_file);
 
+        initCrawledUrl(url_file);
     }
 
     public void cleanup() {
@@ -45,6 +50,47 @@ public class AmazonCrawler {
                 e.printStackTrace();
             }
         }
+    }
+    private String cleanUrl(String str) {
+        str = str.substring(0,str.indexOf("/ref"));
+        return str;
+
+    }
+    private void initCrawledUrl(String crawledUrl_file){
+        this.url_file = crawledUrl_file;
+        File file = new File(url_file);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        crawledUrls = new HashSet<String>();
+        try (BufferedReader br = new BufferedReader(new FileReader(crawledUrl_file))){
+            String line;
+            while ((line = br.readLine()) != null) {
+                crawledUrls.add(line);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void writeCrawledUrl() {
+        try {
+            FileWriter fileWriter = new FileWriter(this.url_file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for (String url:crawledUrls) {
+                bufferedWriter.write(url);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void initProxyList(String proxy_file) {
@@ -125,10 +171,10 @@ public class AmazonCrawler {
             headers.put("Accept-Language", "en-US,en;q=0.8");
             Document doc = Jsoup.connect(url).headers(headers).userAgent(USER_AGENT).timeout(100000).get();
             //Document doc = Jsoup.connect(url).userAgent(USER_AGENT).timeout(100000).get();
-
+            //#result_3
             //System.out.println(doc.text());
             //#s-results-list-atf
-            Elements results = doc.select("#s-results-list-atf").select("li");
+            Elements results = doc.select("#s-results-list-atf").select("li[data-asin]");
             System.out.println("num of results = " + results.size());
             for(int i = 0; i < results.size();i++) {
                 Ad ad = new Ad();
@@ -168,8 +214,13 @@ public class AmazonCrawler {
                 Element detail_url_ele = doc.select(detail_path).first();
                 if(detail_url_ele != null) {
                     String detail_url = detail_url_ele.attr("href");
+
                     //System.out.println("detail = " + detail_url);
-                    ad.detail_url = detail_url;
+                    ad.detail_url = cleanUrl(detail_url);
+                    if (crawledUrls.contains(detail_url))
+                        continue;
+                    else
+                        crawledUrls.add(detail_url);
                 } else {
                     logBFWriter.write("cannot parse detail for query:" + query + ", title: " + ad.title);
                     logBFWriter.newLine();
@@ -240,6 +291,7 @@ public class AmazonCrawler {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        this.writeCrawledUrl();
         return products;
     }
 }
