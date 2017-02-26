@@ -8,14 +8,14 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/Users/merlin/Documents/广告搜索/javalib/json-20160807.jar"/>
-	<classpathentry kind="lib" path="/Users/merlin/Documents/广告搜索/javalib/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="/Users/merlin/Documents/广告搜索/javalib/lucene-analyzers-common-4.0.0.jar"/>
-	<classpathentry kind="lib" path="/Users/merlin/Documents/广告搜索/javalib/lucene-core-4.0.0.jar"/>
-	<classpathentry kind="lib" path="/Users/merlin/Documents/广告搜索/javalib/lucene-queryparser-4.0.0.jar"/>
-	<classpathentry kind="lib" path="/Users/merlin/Documents/广告搜索/javalib/lucene-suggest-4.0.0.jar"/>
-	<classpathentry kind="lib" path="/Users/merlin/Documents/广告搜索/javalib/mysql-connector-java-5.1.40-bin.jar"/>
-	<classpathentry kind="lib" path="/Users/merlin/Documents/广告搜索/javalib/servlet-api-3.1.jar"/>
-	<classpathentry kind="lib" path="/Users/merlin/Documents/广告搜索/javalib/spymemcached-2.12.1.jar"/>
+	<classpathentry kind="lib" path="/Users/merlin/workarea/javalib/json-20160807.jar"/>
+	<classpathentry kind="lib" path="/Users/merlin/workarea/javalib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="/Users/merlin/workarea/javalib/lucene-analyzers-common-4.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/merlin/workarea/javalib/lucene-core-4.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/merlin/workarea/javalib/lucene-queryparser-4.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/merlin/workarea/javalib/lucene-suggest-4.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/merlin/workarea/javalib/mysql-connector-java-5.1.40-bin.jar"/>
+	<classpathentry kind="lib" path="/Users/merlin/workarea/javalib/servlet-api-3.1.jar"/>
+	<classpathentry kind="lib" path="/Users/merlin/workarea/javalib/spymemcached-2.12.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -7,22 +7,22 @@
 
 <context-param>
 <param-name>adsDataFilePath</param-name>
-<param-value>/Users/merlin/Documents/SearchAds/ads7.txt</param-value>
+<param-value>/Users/merlin/workarea/AdSearchProject/Ad/SearchAds/ads7.txt</param-value>
 </context-param>
 
 <context-param>
 <param-name>budgetDataFilePath</param-name>
-<param-value>/Users/merlin/Documents/SearchAds/budget.txt</param-value>
+<param-value>/Users/merlin/workarea/AdSearchProject/Ad/SearchAds/budget.txt</param-value>
 </context-param>
 
 <context-param>
 <param-name>uiTemplateFilePath</param-name>
-<param-value>/Users/jiayangan/project/SearchAds/ui.html</param-value>
+<param-value>/Users/merlin/workarea/AdSearchProject/Ad/SearchAds/ui.html</param-value>
 </context-param>
 
 <context-param>
 <param-name>adTemplateFilePath</param-name>
-<param-value>/Users/jiayangan/project/SearchAds/item.html</param-value>
+<param-value>/Users/merlin/workarea/AdSearchProject/Ad/SearchAds/item.html</param-value>
 </context-param>
 
 <context-param>
@@ -52,12 +52,12 @@
 
 <context-param>
 <param-name>mysqlPass</param-name>
-<param-value>921123</param-value>
+<param-value>root</param-value>
 </context-param>
 
 <servlet>
     <servlet-name>SearchAds</servlet-name>
-    <servlet-class>io.bittiger.ads.SearchAds</servlet-class>
+    <servlet-class>io.merlin.ads.SearchAds</servlet-class>
 </servlet>
 
 <servlet-mapping>
